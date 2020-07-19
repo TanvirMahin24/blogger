@@ -1,0 +1,232 @@
+:root {
+  --colorLightBlue: #e7f2fc;
+  --colorBlue: #1f86dc;
+  --colorBlue50: rgb(107, 187, 252);
+  --colorWhite: #fff;
+  --colorBlack70: rgb(4, 32, 54);
+  --colorLightRed: rgba(170, 169, 173, 0.253);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+a.textBlue {
+  text-decoration: none !important;
+  transition: 0.4s color ease-in-out;
+}
+a.textBlue:hover {
+  text-decoration: none !important;
+  color: var(--colorBlack70) !important;
+}
+.bgLightBlue {
+  background: var(--colorLightBlue);
+}
+.textBlue {
+  color: var(--colorBlue) !important;
+}
+.textBlue50 {
+  color: var(--colorBlue50) !important;
+}
+.textLightBlue {
+  color: var(--colorLightBlue) !important;
+}
+.bgBlue {
+  background: var(--colorBlue);
+}
+.bgLightRed {
+  background: var(--colorLightRed);
+}
+.height100 {
+  height: 100vh;
+}
+.sizeSocialIcon {
+  font-size: 1.8rem;
+}
+.single-post:hover {
+  color: var(--colorBlue);
+}
+.single-post img:hover {
+  transform: scale(1.1);
+}
+.titlePopulerPost {
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--colorBlack70);
+}
+.titlePopulerPost:hover {
+  text-decoration: none;
+  color: var(--colorBlue);
+}
+.singleCardAllPost a img:hover {
+  transform: scale(0.95);
+}
+footer .fab {
+  font-size: 1.3rem;
+  transition: 0.3s color ease-in-out;
+}
+footer .fab:hover {
+  color: var(--colorBlack70);
+}
+.socialLinksFooter a {
+  text-decoration: none;
+}
+
+
+/**HomePage css **/
+.homepageHeaderSection {
+  overflow: hidden;
+}
+.homepage .appTitle {
+  font-size: 4rem;
+}
+.homepage .socialLinksHeader a {
+  text-decoration: none;
+  font-size: 1.6rem;
+}
+.homepage .socialLinksHeader a i {
+  color: var(--colorBlack70);
+  transition: 0.3s color ease-in-out;
+}
+.homepage .socialLinksHeader a i:hover {
+  color: var(--colorBlue);
+}
+/**Dashboard Page **/
+.dashboard .profileSectionRight .social a {
+  display: flex;
+  margin: 0 7px;
+  width: 100%;
+  height: 100%;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background: var(--colorBlack70);
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.dashboard .profileSectionRight .social a:hover {
+  background: var(--colorBlue);
+  transition: all 0.3s ease-in-out;
+}
+
+/*Profile card css*/
+
+.profile-card {
+  font-family: "Open Sans", Arial, sans-serif;
+  position: relative;
+  float: left;
+  overflow: hidden;
+  width: 100%;
+  text-align: center;
+  height: 100%;
+  border: none;
+  box-shadow: 5px 10px 10px 0 rgb(128, 125, 125);
+}
+.profile-card .background-block {
+  float: left;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+}
+.profile-card .background-block .background {
+  height: 100%;
+  vertical-align: top;
+  opacity: 1;
+  -webkit-filter: blur(0.8px);
+  filter: blur(0.8px);
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+}
+.profile-card .card-content {
+  width: 100%;
+  padding: 0px 25px;
+  color: #232323;
+  float: left;
+  background: rgba(36, 46, 74, 0.12);
+  height: 50%;
+  border-radius: 0 0 5px 5px;
+  position: relative;
+  z-index: 1;
+}
+.profile-card .card-content::before {
+  content: "";
+  background: #efefef;
+  width: 120%;
+  height: 100%;
+  left: 11px;
+  bottom: 51px;
+  position: absolute;
+  z-index: -1;
+  transform: rotate(-13deg);
+}
+.profile-card .profile {
+  border-radius: 50%;
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  max-width: 180px;
+  opacity: 1;
+  box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.8);
+  border: 2px solid rgba(255, 255, 255, 1);
+  -webkit-transform: translate(-50%, 0%);
+  transform: translate(-50%, 0%);
+  z-index: 2;
+}
+.profile-card h2 {
+  margin: 0 0 5px;
+  font-weight: 600;
+  font-size: 25px;
+}
+.profile-card h2 small {
+  display: block;
+  font-size: 15px;
+  margin-top: 10px;
+}
+.profile-card .social i {
+  display: inline-block;
+  font-size: 18px;
+  color: #232323;
+  text-align: center;
+  border: 1px solid #232323;
+  width: 30px;
+  height: 30px;
+  line-height: 28px;
+  border-radius: 50%;
+  margin: 5px 5px;
+}
+.profile-card .social i:hover {
+  background-color: #232323;
+  color: var(--colorWhite);
+  text-decoration: none;
+}
+.profile-card p {
+  margin-bottom: 0px;
+}
+.logoHeader {
+  width: 40%;
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 12px;
+  }
+  .navbar {
+    position: absolute;
+    width: 100%;
+    z-index: 999;
+  }
+  .order1 {
+    order: 1;
+  }
+  .order2 {
+    order: 2;
+  }
+  .homepage .appTitle {
+    font-size: 2.5rem;
+  }
+  .height100{
+    height: auto;
+  }
+}

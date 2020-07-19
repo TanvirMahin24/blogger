@@ -1,0 +1,23 @@
+================================
+login info:
+================================
+Username: tm24
+Email: tanvirmahin24@gmail.com
+Password: 123
+
+
+================================
+Features:
+================================
+1. full Login with error massege. User can login with both username and email in a single input field.
+2. full Signup with error massege 
+3. Profile Customization
+4. Profile picture can be changed. Old profile picture automatically removes in the update process.
+5. Navbar shows if the user is logged in or not by showing the logged in user's name
+6. Necessary routes are protected for sicurity like: Dashboard, editProfile, Change Passowrd, Edit profile image etc.
+7. SQL ingection attack handeled.
+8. Every profile has a public page where the visitors can view their details and their blogs.
+9. Profile page publically visible but can not be edited without authorization.
+10. Create new blog with image, title and description
+11. User can make his blog Published and Unpublished from the setting icon on each blog into his Dashboard.
+12. 
