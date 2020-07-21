@@ -59,7 +59,7 @@
                       class="card text-left singleCardAllPost shadow shadow-sm"
                     >
                       <div class="img-profile">
-                        <a href="#">
+                        <a href="blog.php?id=<?php echo $row['id']?>">
                           <img
                             src="uploads/blog/<?php echo $row['image']?>"
                             class="card-img-top imgBlog"
@@ -109,7 +109,7 @@
                         <p
                           class="text-right mb-0 text-uppercase font-small spacing font-weight-bold"
                         >
-                          <a href="#" class="textBlue"
+                          <a href="blog.php?id=<?php echo $row['id']?>" class="textBlue"
                             >read more
                             <i
                               class="fas fa-chevron-right"

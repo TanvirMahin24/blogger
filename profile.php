@@ -10,6 +10,10 @@
 
     if (mysqli_num_rows($result) > 0) {
         $data = mysqli_fetch_assoc($result);
+        //fetch user
+        $sql2 = "SELECT * FROM blogs WHERE user_id = ".$data['id'].";";
+        $result2 = mysqli_query($conn, $sql2);
+        $result_check2 = mysqli_num_rows($result2);
     }
     else{
         header("Location: index.php");
@@ -43,7 +47,7 @@
                       class="card text-left singleCardAllPost shadow shadow-sm"
                     >
                       <div class="img-profile">
-                        <a href="#">
+                        <a href="blog.php?id=<?php echo $row['id']?>" >
                           <img
                             src="uploads/blog/<?php echo $row['image']?>"
                             class="card-img-top imgBlog"
@@ -85,7 +89,7 @@
                         <p
                           class="text-right mb-0 text-uppercase font-small spacing font-weight-bold"
                         >
-                          <a href="#" class="textBlue"
+                          <a href="blog.php?id=<?php echo $row['id']?>"  class="textBlue"
                             >read more
                             <i
                               class="fas fa-chevron-right"
@@ -143,12 +147,13 @@
                 }
                 
                 ?>
+
                 
                 <p class="h6">
                   <i class="fas fa-users"></i> <strong>Followers :</strong>  100
                 </p>
                 <p class="h6">
-                  <i class="fas fa-newspaper"></i><strong> Blogs :</strong> 10
+                  <i class="fas fa-newspaper"></i><strong> Blogs :</strong> <?php echo $result_check2; ?>
                 </p>
 
         
@@ -178,7 +183,7 @@
                 <div class="single-post">
                   <div class="row p-2">
                     <div class="col-5">
-                      <a href="#">
+                      <a href="blog.php?id=<?php echo $row['id']?>" >
                         <img
                           src="uploads/blog/<?php echo $row['image'] ?>"
                           class="img-fluid rounded"
@@ -188,8 +193,8 @@
                     </div>
                     <div class="col-7">
                       <h6 class="mt-0 text-small">
-                        <a href="#" class="titlePopulerPost">
-                        <?php echo $row['title'] ?>
+                        <a href="blog.php?id=<?php echo $row['id']?>"  class="titlePopulerPost">
+                          <?php echo $row['title'] ?>
                         </a>
                       </h6>
                       <div class="">

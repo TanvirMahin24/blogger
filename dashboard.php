@@ -23,6 +23,16 @@ if(!isset($_SESSION['name'])){
                       echo '<span class="alert alert-success d-block">Profile Updated!</span>';
                     }
                   }
+                  if(isset($_GET['error'])){
+                    if($_GET['error'] == 'sqlerror'){
+                      echo '<span class="alert alert-danger d-block">Something went wrong!</span>';
+                    }
+                  }
+                  if(isset($_GET['delete'])){
+                    if($_GET['delete'] == 'unauth'){
+                      echo '<span class="alert alert-danger d-block">The blog you are trying to delete does not belong to you!</span>';
+                    }
+                  }
                   if(isset($_GET['password'])){
                     if($_GET['password'] == 'updated'){
                       echo '<span class="alert alert-success d-block">Password Updated!</span>';
@@ -42,6 +52,12 @@ if(!isset($_SESSION['name'])){
                     }
                     elseif($_GET['blog'] == 'published'){
                       echo '<span class="alert alert-success d-block">Blog Unpublished!</span>';
+                    }
+                    elseif($_GET['blog'] == 'edited'){
+                      echo '<span class="alert alert-success d-block">Blog Edited!</span>';
+                    }
+                    elseif($_GET['blog'] == 'deleted'){
+                      echo '<span class="alert alert-success d-block">Blog Deleted!</span>';
                     }
                   }
                 ?>
@@ -71,7 +87,7 @@ if(!isset($_SESSION['name'])){
                       class="card text-left singleCardAllPost shadow shadow-sm <?php $col = $row['active'] == 1? '':'bgLightRed'; echo $col;?>" 
                     >
                       <div class="">
-                        <a href="#">
+                        <a href="blog.php?id=<?php echo $row['id']?>">
                           <img
                             src="uploads/blog/<?php echo $row['image'] ?>"
                             class="card-img-top"
@@ -94,7 +110,7 @@ if(!isset($_SESSION['name'])){
                             class="dropdown-menu"
                             aria-labelledby="optionDropdown"
                           >
-                            <a class="dropdown-item" href="#">Edit</a>
+                            <a class="dropdown-item" href="editBlog.php?id=<?php echo $row['id'] ?>">Edit</a>
                             <?php
                               if($row['active'] == 1){
                                 echo '<a class="dropdown-item" href="includes/unpublish.inc.php?id='.$row['id'].'">Unpublish</a>';
@@ -104,7 +120,7 @@ if(!isset($_SESSION['name'])){
                               }
                             ?>
                             
-                            <a class="dropdown-item text-danger" href="#"
+                            <a class="dropdown-item text-danger" href="includes/deleteBlog.inc.php?id=<?php echo $row['id'] ?>"
                               ><strong>Delete</strong></a
                             >
                           </div>
@@ -153,7 +169,7 @@ if(!isset($_SESSION['name'])){
                         <p
                           class="text-right mb-0 text-uppercase font-small spacing font-weight-bold"
                         >
-                          <a href="#" class="textBlue"
+                          <a href="blog.php?id=<?php echo $row['id']?>" class="textBlue"
                             >read more
                             <i
                               class="fas fa-chevron-right"
@@ -250,7 +266,7 @@ if(!isset($_SESSION['name'])){
                 <div class="single-post">
                   <div class="row p-2">
                     <div class="col-5">
-                      <a href="#">
+                      <a href="blog.php?id=<?php echo $row['id']?>">
                         <img
                           src="uploads/blog/<?php echo $row['image'] ?>"
                           class="img-fluid rounded"
@@ -260,7 +276,7 @@ if(!isset($_SESSION['name'])){
                     </div>
                     <div class="col-7">
                       <h6 class="mt-0 text-small">
-                        <a href="#" class="titlePopulerPost">
+                        <a href="blog.php?id=<?php echo $row['id']?>" class="titlePopulerPost">
                         <?php echo $row['title'] ?>
                         </a>
                       </h6>

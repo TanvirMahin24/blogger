@@ -1,10 +1,24 @@
 <?php
 
 include 'includes/header.inc.php';
+include 'includes/db.inc.php';
 if(!isset($_SESSION['name'])){
   header("Location: index.php");
+  exit();
+}
+if(!isset($_GET['id'])){
+  header("Location: dashboard.php");
+  exit();
+}
+$sql = "SELECT * FROM blogs WHERE id = ".$_GET['id']." LIMIT 1;";
+$result = mysqli_query($conn, $sql);
+$result_check = mysqli_num_rows($result);  
+$row = mysqli_fetch_assoc($result);
+
+if($row['user_id' != $_SESSION['userId']]){
+    header("Location: dashboard.php");
     exit();
-  }
+}
     
 ?>
 
@@ -26,24 +40,28 @@ if(!isset($_SESSION['name'])){
                   }
                 ?>
         </div>
-        <form class="container" method="POST" action="includes/createBlog.inc.php" enctype="multipart/form-data">
+        <form class="container" method="POST" action="includes/editBlog.inc.php" enctype="multipart/form-data">
             <fieldset class="fieldset">
                 <div class="form-group">
                     <label class="col-md-12 control-label">Name</label>
                     <div class="col-md-12">
-                        <input type="text" name="title" class="form-control" required />
+                        <input type="text" name="title" class="form-control" required value="<?php echo $row['title'] ;?>"/>
                         <small class="text-secondary">Name of the blog represents what your blog is all
                             about.
                         </small>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-12 control-label">Article</label>
+                    <label class="col-md-12 control-label">Blog body</label>
                     <div class="col-md-12 col-sm-9 col-xs-12">
-                        <textarea cols="30" rows="20" class="form-control" required name="description"></textarea>
+                        <textarea cols="30" rows="20" class="form-control text-left" required name="description">
+                            <?php echo $row['description'] ;?>
+                        </textarea>
                         <small class="text-secondary">Write the full blog.</small>
                     </div>
                 </div>
+                <input type="hidden" value="<?php echo $row['image'];?>" name="oldImg">
+                <input type="hidden" value="<?php echo $row['id'];?>" name="id">
                 <div class="form-group px-3">
                     <div class="col-md-12 mx-auto text-center pb-3">
                         <div class="">
@@ -59,7 +77,7 @@ if(!isset($_SESSION['name'])){
             <hr />
             <div class="form-group">
                 <div class="text-center">
-                    <input class="btn btn-primary" type="submit" name="create-submit" value="Create Blog" />
+                    <input class="btn btn-primary" type="submit" name="edit-submit" value="Update" />
                     <a href="dashboard.php" class="btn btn-outline-danger px-3 ml-2">Cancel</a>
                 </div>
             </div>
