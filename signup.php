@@ -69,13 +69,13 @@
                   <label for="password">
                     <i class="fas fa-lock textBlue"></i> Password
                   </label>
-                  <input type="text" class="form-control" name="password1" id="password" required/>
+                  <input type="password" class="form-control" name="password1" id="password" required/>
                 </div>
                 <div class="form-group">
                   <label for="password2">
                     <i class="fas fa-lock textBlue"></i> Retype Password
                   </label>
-                  <input type="text" class="form-control" name="password2" id="password2" required/>
+                  <input type="password" class="form-control" name="password2" id="password2" required/>
                 </div>
                 <div class="form-group d-flex justify-content-center">
                   <input

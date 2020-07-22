@@ -20,7 +20,7 @@
             <div class="card-body shadow rounded">
               <h2 class="text-center textBlue">Login</h2>
               <hr class="w-50 mx-auto bgLightBlue" />
-              <div class="py-2 text-center">
+              <div class="py-2 mb-2 text-center">
                 <?php
                   if(isset($_GET['error'])){
                     if($_GET['error'] == 'emptyfields'){
@@ -38,6 +38,11 @@
                       echo '<span class="alert alert-success">Signup done. Login to continue!</span>';
                     }
                   }
+                  if(isset($_GET['auth'])){
+                    if($_GET['auth'] == 'fail'){
+                      echo '<span class="alert alert-danger">Login to react or Comment!</span>';
+                    }
+                  }
                 ?>
               </div>
               <form action="includes/login.inc.php" method="POST">
@@ -51,7 +56,7 @@
                   <label for="password">
                     <i class="fas fa-lock textBlue"></i> Password
                   </label>
-                  <input type="text" class="form-control" name="password" id="password" required/>
+                  <input type="password" class="form-control" name="password" id="password" required/>
                 </div>
                 <div class="form-group d-flex justify-content-center">
                   <input

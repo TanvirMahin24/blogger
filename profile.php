@@ -115,21 +115,40 @@
                               }
                             }
                           }
+                          //Dislike query
+                          $sqlDisLike = "SELECT * FROM dislikes WHERE blog_id =".$row['id'].";";
+                          $resultDislike = mysqli_query($conn, $sqlDisLike);
+                          $result_checkDislike = mysqli_num_rows($resultDislike);
+                          $Disliked = 'secondary';
+                          if( $result_checkDislike > 0 ){
+                            while ($rowDislike = mysqli_fetch_assoc($resultDislike)) {
+                              if(isset($_SESSION['userId']) && $rowDislike['user_id'] == $_SESSION['userId']){
+                                $Disliked = 'primary';
+                              }
+                            }
+                          }
+                          
                         ?>
                         </p>
 
                         <div class="row">
-                          <div class="col-6">
-                            <h5>
-                              <a href="includes/<?php if($liked == 'danger'){echo 'dislike';}else{echo 'like';}?>.inc.php?id=<?php echo $row['id']?>&p=profile&pid=<?php echo $_GET['id']?>" class="text-<?php echo $liked;?>">
+                        <div class="col-7">
+                            <h5 class="likeDisLikeFont">
+                              <a href="includes/<?php if($liked == 'danger'){echo 'unlike';}else{echo 'like';}?>.inc.php?id=<?php echo $row['id']?>&p=profile&pid=<?php echo $data['id']?>" class="text-<?php echo $liked;?>">
                                 <span class="fas fa-heart">
                                 </span>  
                               </a>
                               <?php if($result_checkLike > 0){ echo $result_checkLike;}?>
+                              <!--Dislike -->
+                              <a href="includes/<?php if($Disliked == 'secondary'){echo 'dislike';}else{echo 'notdislike';}?>.inc.php?id=<?php echo $row['id']?>&p=profile&pid=<?php echo $data['id']?>" class="text-<?php echo $Disliked;?>">
+                                <span class="fas fa-thumbs-down">
+                                </span>  
+                              </a>
+                              <?php if($result_checkDislike > 0){ echo $result_checkDislike;}?>
                               <span class="pl-2">
                                 <i class="fas fa-comments pr-1"></i>
                                 <?php
-                                  //Like query
+                                  //Comment count query
                                   $sqlCmnt = "SELECT * FROM comments WHERE blog_id =".$row['id'].";";
                                   $resultCmnt = mysqli_query($conn, $sqlCmnt);
                                   $result_checkCmnt = mysqli_num_rows($resultCmnt);
@@ -138,7 +157,7 @@
                               </span>
                             </h5>
                           </div>
-                          <div class="col-6 my-auto">
+                          <div class="col-5 my-auto">
                             <p
                               class="text-right mb-0 text-uppercase font-small font-weight-bold fontLinkFix"
                             >

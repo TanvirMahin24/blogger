@@ -6,6 +6,10 @@ Username: tm24
 Email: tanvirmahin24@gmail.com
 Password: 123
 
+Username: ut
+Email: utshab777@gmail.com
+Password: devteam
+
 
 ================================
 Features:
@@ -31,4 +35,6 @@ Features:
 18. Logged in user can unlike previously liked blog.
 19. Every post will show the number of likes it got.
 20. Logged in user can Follow or Unfollow other users.
+21. Logged in user can Dislike any blog.
+22. Logged in user can change dislike status previously disliked blog.
  

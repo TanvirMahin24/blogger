@@ -15,15 +15,14 @@ if(isset($_SESSION['name']) && isset($_GET['id'])){
     else{
         $page = 'index';
     }
-    
-    $sql = "DELETE FROM likes WHERE user_id =".$_SESSION['userId']." AND blog_id =".$id.";";
+    $sql = "INSERT INTO dislikes (user_id, blog_id) VALUES (".$_SESSION['userId'].", ".$id.");";
     $result = mysqli_query($conn, $sql);
     $result_check = mysqli_num_rows($result);
-
+    
     header("Location: ../".$page.".php".$pid);
     exit();
 }
 else{
-    header("Location: ../login.php");
+    header("Location: ../login.php?auth=fail");
     exit();
 }

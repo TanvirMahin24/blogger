@@ -24,12 +24,26 @@ if(!isset($_GET['id'])){
     $result_checkLike = mysqli_num_rows($resultLike);
     $liked = 'secondary';
     if( $result_checkLike > 0 ){
-    while ($rowLike = mysqli_fetch_assoc($resultLike)) {
-      if(isset($_SESSION['userId']) && $rowLike['user_id'] == $_SESSION['userId']){
-        $liked = 'danger';
+        while ($rowLike = mysqli_fetch_assoc($resultLike)) {
+            if(isset($_SESSION['userId']) && $rowLike['user_id'] == $_SESSION['userId']){
+                $liked = 'danger';
+            }
+        }
+    }
+    //Dislike query
+    $sqlDisLike = "SELECT * FROM dislikes WHERE blog_id =".$row['id'].";";
+    $resultDislike = mysqli_query($conn, $sqlDisLike);
+    $result_checkDislike = mysqli_num_rows($resultDislike);
+    $Disliked = 'secondary';
+    $dislikeCount = $result_checkDislike;
+    if( $result_checkDislike > 0 ){
+      while ($rowDislike = mysqli_fetch_assoc($resultDislike)) {
+        if(isset($_SESSION['userId']) && $rowDislike['user_id'] == $_SESSION['userId']){
+          $Disliked = 'primary';
+        }
       }
     }
-  }
+  
 ?>
 <div class="d-block bgLightBlue py-4">
     <section class="container bg-white card card-body shadow shadow-sm mt-5">
@@ -81,13 +95,18 @@ if(!isset($_GET['id'])){
                     </div>
                 </div>
                 <div class="col-4">
-                    <h1>
-                        <a href="includes/<?php if($liked == 'danger'){echo 'dislike';}else{echo 'like';}?>.inc.php?id=<?php echo $row['id']?>&p=blog&pid=<?php echo $row['id']?>" class="text-<?php echo $liked;?>">
+                    <span class="d-block h1">
+                        <a href="includes/<?php if($liked == 'danger'){echo 'unlike';}else{echo 'like';}?>.inc.php?id=<?php echo $row['id']?>&p=blog&pid=<?php echo $row['id']?>" class="text-<?php echo $liked;?>">
                             <span class="fas fa-heart">
                             </span>  
                         </a>
                         <?php if($result_checkLike > 0){ echo $result_checkLike;}?>
-                    </h1>
+                        <a href="includes/<?php if($Disliked == 'secondary'){echo 'dislike';}else{echo 'notdislike';}?>.inc.php?id=<?php echo $row['id']?>&p=blog&pid=<?php echo $row['id']?>" class="text-<?php echo $Disliked;?>">
+                            <span class="fas fa-thumbs-down">
+                            </span>  
+                        </a>
+                        <?php if($dislikeCount > 0){ echo $dislikeCount;}?>
+                    </span>
                 </div>
             </div>
             <p class="h4 font-weight-normal text-justify">
