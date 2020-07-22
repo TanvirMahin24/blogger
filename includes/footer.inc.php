@@ -23,7 +23,7 @@
               style="width: 60px;"
             />
             <p>
-              <a href="#!" class="">Login</a>
+              <a href="#!" class="">Privacy Policy</a>
             </p>
             <p>
               <a href="#!" class="">About Us</a>
@@ -32,7 +32,7 @@
               <a href="#!" class="">Latest Articles</a>
             </p>
             <p>
-              <a href="#!" class="">Contact</a>
+              <a href="#!" class="">Contact Us</a>
             </p>
           </div>
           <div class="col-md-4">

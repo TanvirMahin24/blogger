@@ -1,6 +1,7 @@
 ================================
 login info:
 ================================
+
 Username: tm24
 Email: tanvirmahin24@gmail.com
 Password: 123
@@ -9,6 +10,7 @@ Password: 123
 ================================
 Features:
 ================================
+
 1. full Login with error massege. User can login with both username and email in a single input field.
 2. full Signup with error massege 
 3. Profile Customization
@@ -23,3 +25,10 @@ Features:
 12. User can delete his blog.
 13. User can edit his blog title description or Image. In case of newly uploaded image old image automatically gets removed in the update process.
 14. There is a dedicated blog page for showing the full blog
+15. Logged in user can comment on other's blogs.
+16. Number of comment will be shown with blog blogs.
+17. Logged in user can like other's blog.
+18. Logged in user can unlike previously liked blog.
+19. Every post will show the number of likes it got.
+20. Logged in user can Follow or Unfollow other users.
+ 

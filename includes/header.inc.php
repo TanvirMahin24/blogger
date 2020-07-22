@@ -51,14 +51,14 @@ session_start();
         <?php
           if(isset($_SESSION['name'])){
             echo '<a href="includes/logout.inc.php" class="btn btn-outline-danger mx-md-1 px-md-4 px-5"
-                    >Logout</a>';
+                    ><i class="fas fa-sign-out-alt pr-2"></i>Logout</a>';
           }
           else{
             echo '
             <a href="login.php" class="btn btn-primary mx-md-1 px-md-4 px-5"
-              >Login</a>
+              ><i class="fas fa-sign-in-alt pr-2"></i>Login</a>
             <a href="./signup.php" class="btn btn-primary mx-md-1 px-md-4 px-5"
-              >Signup</a>';
+              ><i class="fas fa-user-plus pr-2"></i>Signup</a>';
           }
 
         ?>

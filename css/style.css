@@ -207,7 +207,9 @@ footer .fab:hover {
 .logoHeader {
   width: 40%;
 }
-
+.fontLinkFix{
+  font-size: .9rem;
+}
 @media screen and (max-width: 768px) {
   body {
     font-size: 12px;

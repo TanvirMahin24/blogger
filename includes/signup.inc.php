@@ -56,7 +56,7 @@ if(isset($_POST['signup-submit'])){
                     $img = "blank.png";
                     mysqli_stmt_bind_param($stmt, "sssss",$name, $username, $email, $hashedPwd,$img);
                     mysqli_stmt_execute($stmt);
-                    header("Location: ../dashboard.php");
+                    header("Location: ../login.php?signup=success");
                     exit();
                 }
                 

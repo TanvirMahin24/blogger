@@ -88,7 +88,7 @@
               </form>
               <hr />
               <h6 class="text-center py-1">
-                Already have an account. <a href="./Login.html">Login now</a>
+                Already have an account. <a href="login.php">Login now</a>
               </h6>
               
             </div>

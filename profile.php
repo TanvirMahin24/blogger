@@ -27,6 +27,27 @@
         <div class="row">
           <div class="col-md-8 mt-3">
             <div class="container mt-4 mb-4">
+            <div class="w-75 mb-2 text-center mx-auto">
+                <?php
+                  if(isset($_GET['follow'])){
+                    if($_GET['follow'] == 'success'){
+                      echo '<span class="alert alert-success d-block">You are following '.$data['name'].'!</span>';
+                    }
+                    elseif($_GET['follow'] == 'fail'){
+                      echo '<span class="alert alert-danger d-block">Something went wrong with following process!</span>';
+                    }
+                  }
+                  if(isset($_GET['unfollow'])){
+                    if($_GET['unfollow'] == 'success'){
+                      echo '<span class="alert alert-success d-block">You have unfollowed '.$data['name'].'!</span>';
+                    }
+                    elseif($_GET['unfollow'] == 'fail'){
+                      echo '<span class="alert alert-danger d-block">Something went wrong with unfollowing process!</span>';
+                    }
+                  }
+                  
+                ?>
+              </div>
               <!--All Blog-->
               <h2 class="text-center font-weight-light pb-3">
                 <i class="fas fa-newspaper pr-3"></i>Blog by <?php echo $data['name']?>
@@ -82,21 +103,55 @@
                           } else{
                             echo $row['description'];
                           } 
-                        
+                          //Like query
+                          $sqlLike = "SELECT * FROM likes WHERE blog_id =".$row['id'].";";
+                          $resultLike = mysqli_query($conn, $sqlLike);
+                          $result_checkLike = mysqli_num_rows($resultLike);
+                          $liked = 'secondary';
+                          if( $result_checkLike > 0 ){
+                            while ($rowLike = mysqli_fetch_assoc($resultLike)) {
+                              if(isset($_SESSION['userId']) && $rowLike['user_id'] == $_SESSION['userId']){
+                                $liked = 'danger';
+                              }
+                            }
+                          }
                         ?>
                         </p>
 
-                        <p
-                          class="text-right mb-0 text-uppercase font-small spacing font-weight-bold"
-                        >
-                          <a href="blog.php?id=<?php echo $row['id']?>"  class="textBlue"
-                            >read more
-                            <i
-                              class="fas fa-chevron-right"
-                              aria-hidden="true"
-                            ></i>
-                          </a>
-                        </p>
+                        <div class="row">
+                          <div class="col-6">
+                            <h5>
+                              <a href="includes/<?php if($liked == 'danger'){echo 'dislike';}else{echo 'like';}?>.inc.php?id=<?php echo $row['id']?>&p=profile&pid=<?php echo $_GET['id']?>" class="text-<?php echo $liked;?>">
+                                <span class="fas fa-heart">
+                                </span>  
+                              </a>
+                              <?php if($result_checkLike > 0){ echo $result_checkLike;}?>
+                              <span class="pl-2">
+                                <i class="fas fa-comments pr-1"></i>
+                                <?php
+                                  //Like query
+                                  $sqlCmnt = "SELECT * FROM comments WHERE blog_id =".$row['id'].";";
+                                  $resultCmnt = mysqli_query($conn, $sqlCmnt);
+                                  $result_checkCmnt = mysqli_num_rows($resultCmnt);
+                                  echo $result_checkCmnt ;
+                                ?>
+                              </span>
+                            </h5>
+                          </div>
+                          <div class="col-6 my-auto">
+                            <p
+                              class="text-right mb-0 text-uppercase font-small font-weight-bold fontLinkFix"
+                            >
+                              <a href="blog.php?id=<?php echo $row['id']?>" class="textBlue"
+                                >read more
+                                <i
+                                  class="fas fa-chevron-right"
+                                  aria-hidden="true"
+                                ></i>
+                              </a>
+                            </p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -128,21 +183,36 @@
                 />
               </div>
               <div class="card-body">
+                <?php
+                  //Follow query
+                  $sqlFollow = "SELECT * FROM followers WHERE user_id =".$data['id'].";";
+                  $resultFollow = mysqli_query($conn, $sqlFollow);
+                  $result_checkFollow = mysqli_num_rows($resultFollow);
+                  $Follow = 'Follow';
+                  if( $result_checkFollow > 0 ){
+                    while ($rowFollow = mysqli_fetch_assoc($resultFollow)) {
+                      if(isset($_SESSION['userId']) && $rowFollow['user_id'] == $data['id']){
+                        $Follow = 'Unfollow';
+                      }
+                    }
+                  }
+                ?>
+                <?php if(isset($_SESSION['name'])){ echo '<a href="includes/'; if($Follow == 'Follow'){echo 'follow';}else{echo 'unfollow';} echo '.inc.php?id='.$data['id'].'" class="btn btn-primary mb-3"><i class="fas fa-user-plus pr-2"></i>'.$Follow.'</a>';}?>
                 <h4 class="card-title"><strong><?php echo $data['name'] ?></strong></h4>
                 <?php
                 if($data['job'] != ''){
                   echo '<p class="h6">
-                          <i class="fas fa-briefcase pr-2"></i>'.$data['job'].';
+                          <i class="fas fa-briefcase pr-2"></i>'.$data['job'].'
                         </p>';
                 }
                 if($data['address'] != ''){
                   echo '<p class="h6">
-                          <i class="fas fa-map-marker-alt pr-2"></i>'.$data['address'].';
+                          <i class="fas fa-map-marker-alt pr-2"></i>'.$data['address'].'
                         </p>';
                 }
                 if($data['phone'] != ''){
                   echo '<p class="h6">
-                          <i class="fas fa-phone pr-2"></i>'.$data['phone'].';
+                          <i class="fas fa-phone pr-2"></i>'.$data['phone'].'
                         </p>';
                 }
                 
@@ -150,7 +220,7 @@
 
                 
                 <p class="h6">
-                  <i class="fas fa-users"></i> <strong>Followers :</strong>  100
+                  <i class="fas fa-users"></i> <strong>Followers :</strong>  <?php echo $result_checkFollow?>
                 </p>
                 <p class="h6">
                   <i class="fas fa-newspaper"></i><strong> Blogs :</strong> <?php echo $result_check2; ?>

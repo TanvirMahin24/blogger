@@ -30,7 +30,12 @@
                         echo '<span class="alert alert-danger">Email or Username invalid</span>';
                     }
                     elseif($_GET['error'] == 'wrongpwd'){
-                        echo '<span class="alert alert-danger d-block">Wrong Password</span>';
+                        echo '<span class="alert alert-danger d-block">Wrong Password!</span>';
+                    }
+                  }
+                  if(isset($_GET['signup'])){
+                    if($_GET['signup'] == 'success'){
+                      echo '<span class="alert alert-success">Signup done. Login to continue!</span>';
                     }
                   }
                 ?>
@@ -59,7 +64,7 @@
               </form>
               <hr>
               <h6 class="text-center pb-3">
-                Don't have an account. <a href="./Sign up.html">Sign Up now</a>
+                Don't have an account. <a href="signup.php">Sign Up now</a>
               </h6>
             </div>
           </div>
