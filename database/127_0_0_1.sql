@@ -19,10 +19,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `dev2_tanvirmahincse18`
+-- Database: `dev_tanvirmahincse182`
 --
-CREATE DATABASE IF NOT EXISTS `dev2_tanvirmahincse18` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `dev2_tanvirmahincse18`;
+CREATE DATABASE IF NOT EXISTS `dev_tanvirmahincse182` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `dev_tanvirmahincse182`;
 
 -- --------------------------------------------------------
 
